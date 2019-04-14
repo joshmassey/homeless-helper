@@ -145,7 +145,9 @@
         var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ/2) * Math.sin(Δλ/2);
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
         var d = R * c;
+        return d;
       }
+      
       function createMarker(place) {
         var marker = new google.maps.Marker({
           map: map,
@@ -161,7 +163,10 @@
   </head>
   <body>
     <div class="topnav">
-     <input type="text" placeholder="Search..">
+      <form action="/action_page.php">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
     </div>
     <div id="map"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIWov4265z549GvpgMjCmW75wOQlDjw5A&libraries=places&callback=initMap" async defer></script>
