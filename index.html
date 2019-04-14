@@ -61,7 +61,7 @@
         $.getJSON("bus_stops.json", function(rawData) {
           var theStops = rawData[1]["data"];
           for (var i = 0; i <= theStops.length; i++) {
-            request.push({"stop_id": theStops[i]["stop_id"], "stop_loc": theStops[i]["stop_lat"] + "n, " theStops[i]["stop_lon"] + "w"});
+            request.push({"stop_id": theStops[i]["stop_id"], "stop_loc": theStops[i]["stop_lat"] + "n, " + theStops[i]["stop_lon"] + "w"});
           }
 
           service = new google.maps.places.PlacesService(map);
