@@ -33,6 +33,7 @@
         padding: 0;
       }
     </style>
+
     <script>
       // This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
@@ -43,28 +44,36 @@
       var infowindow;
 
       function initMap() {
-        var sydney = new google.maps.LatLng(-33.867, 151.195);
+        var baltimore = new google.maps.LatLng(39.2904, 76.6122);
 
         infowindow = new google.maps.InfoWindow();
 
         map = new google.maps.Map(
-            document.getElementById('map'), {center: sydney, zoom: 15});
+            document.getElementById('map'), {center: baltimore, zoom: 5});
 
-        var request = {
-          query: 'Museum of Contemporary Art Australia',
-          fields: ['name', 'geometry'],
-        };
+        // var request = {
+        //   query: 'Museum of Contemporary Art Australia',
+        //   fields: ['name', 'geometry'],
+        // };
 
-        service = new google.maps.places.PlacesService(map);
+        var request = [ ];
 
-        service.findPlaceFromQuery(request, function(results, status) {
-          if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
-              createMarker(results[i]);
-            }
-
-            map.setCenter(results[0].geometry.location);
+        $.getJSON("bus_stops.json", function(rawData) {
+          var theStops = rawData[1]["data"];
+          for (int i = 0; i <= theStops.length; i++) {
+            request.push({"stop_id": theStops[i]["stop_id"], "stop_loc": theStops[i]["stop_lat"] + "n, " theStops[i]["stop_lon"] + "w"});
           }
+
+          service = new google.maps.places.PlacesService(map);
+
+          service.findPlaceFromQuery(request, function(results, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+              for (var i = 0; i < results.length; i++) {
+                createMarker(results[i]);
+              }
+              map.setCenter(results[0].geometry.location);
+            }
+          });
         });
       }
 
