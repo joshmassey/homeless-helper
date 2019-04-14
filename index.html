@@ -43,7 +43,25 @@
       var map;
       var service;
       var infowindow;
-
+      var aidList = [["Baltimore Outreach Services","701 S Charles St, Baltimore, MD 21230", 38.993227, 76.932575],
+                     ["My Sister's Place Women's Center","17 W Franklin St, Baltimore, MD 21201",39.294897,-76.616571],
+                     ["Health Care for the Homeless","421 Fallsway, Baltimore, MD 21202",39.293784,,-76.609442],
+                     ["Project Plase","1814 Maryland Ave, Baltimore, MD 21201",39.310225,-76.618080],
+                     ["Project Plase","139 E North Ave, Baltimore, MD 21202",39.310915,76.614055],
+                     ["Project Plase","3549 Old Frederick Rd, Baltimore, MD 21229",39.282679,-76.676881,],
+                     ["Mayor's Office of Human Services","7 E Redwood St, Baltimore, MD 21202",39.288656,-76.614051],
+                     ["Helping Up Mission","1029 E Baltimore St, Baltimore, MD 21202",39.290488,-76.602096],
+                     ["Community Assistance Network","6622 Loch Raven Blvd, Baltimore, MD 21239",39.377967,-76.580361],
+                     ["Community Assistance Network","7900 Baltimore St, Baltimore, MD 21224",39.299475,-76.514833],
+                     ["Aid Our Veterans","7820 Eastern Ave, Baltimore, MD 21224",39.294560,-76.514283],
+                     ["South Baltimore Homeless Shelter","1611 Baker St, Baltimore, MD 21217",39.306549,-76.643982],
+                     ["Homeless Persons Representation","201 N Charles St #1104, Baltimore, MD 21201",39.291369,-76.615098],
+                     ["Baltimore County Westside Men's Shelter","5 Redwood Cir, Catonsville, MD 21228",39.263566,-76.715801],
+                     ["Women's Housing Coalition","609 Park Ave, Baltimore, MD 21201",39.296659,-76.617963],
+                     ["women's Housing Coalition","119 E 25th St, Baltimore, MD 21218", 39.317727,-76.614400],
+                     ["Code Blue Shelter", "620 Fallsway, Baltimore, MD 21202",39.297316,-76.610629],
+                     ["Catholic Charities", "430 S Broadway, Baltimore, MD 21231",39.285778, -76.593848],
+                     ["Womens Housing", "1101 S Hanover St, Baltimore, MD 21230",39.276562,-76.615289]];
       function initMap() {
         var baltimore = new google.maps.LatLng(39.2904, -76.6122);
 
@@ -52,22 +70,20 @@
         map = new google.maps.Map(
             document.getElementById('map'), {center: baltimore, zoom: 10});
 
-        // var request = {
-        //   query: 'PRATT ST & LIGHT ST eb',
-        //   fields: ['name', 'geometry'],
-        // };
+        var request = {
+          query: 'PRATT ST & LIGHT ST eb',
+          fields: ['name', 'geometry'],
+        };
 
-        var request = [ ];
-        var markers = [ ];
+        // var request = [ ];
 
-        $.getJSON("bus_stops.json", function(rawData) {
-          // alert(rawData);
-          var theStops = rawData[2]["data"];
-          // alert(JSON.stringify(rawData[2]["data"][0]["stop_id"], null, 15));
-          for (var i = 0; i < theStops.length; i++) {
-            request.push( { "stop_id": theStops[i]["stop_id"], "stop_name": theStops[i]["stop_name"], "lat_lng": { lat: theStops[i]["stop_lat"], lng: theStops[i]["stop_lon"] } } );
-            markers.push( new google.maps.Marker({ position: request[i]["lat_lng"], map: map, title: theStops[i]["stop_name"] }) );
-          }
+        // $.getJSON("bus_stops.json", function(rawData) {
+        //   // alert(rawData);
+        //   var theStops = rawData[2]["data"];
+        //   // alert(JSON.stringify(rawData[2]["data"][0]["stop_id"], null, 15));
+        //   for (var i = 0; i < theStops.length; i++) {
+        //     request.push({"stop_id": theStops[i]["stop_id"], "stop_loc": theStops[i]["stop_lat"] + "n, " + theStops[i]["stop_lon"] + "w"});
+        //   }
 
           service = new google.maps.places.PlacesService(map);
 
@@ -79,7 +95,7 @@
               map.setCenter(results[0].geometry.location);
             }
           });
-        });
+      //   });
       }
 
       function createMarker(place) {
