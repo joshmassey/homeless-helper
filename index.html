@@ -52,10 +52,10 @@
         map = new google.maps.Map(
             document.getElementById('map'), {center: baltimore, zoom: 10});
 
-        var request = {
-          query: 'PRATT ST & LIGHT ST eb',
-          fields: ['name', 'geometry'],
-        };
+        // var request = {
+        //   query: 'PRATT ST & LIGHT ST eb',
+        //   fields: ['name', 'geometry'],
+        // };
 
         var request = [ ];
         var markers = [ ];
@@ -65,7 +65,7 @@
           var theStops = rawData[2]["data"];
           // alert(JSON.stringify(rawData[2]["data"][0]["stop_id"], null, 15));
           for (var i = 0; i < theStops.length; i++) {
-            request.push({ "stop_id": theStops[i]["stop_id"], "stop_name": theStops[i]["stop_name"], "lat_lng": { theStops[i]["stop_lat"], theStops[i]["stop_lon"] } }
+            request.push({ "stop_id": theStops[i]["stop_id"], "stop_name": theStops[i]["stop_name"], "lat_lng": { "lat": theStops[i]["stop_lat"], "lng": theStops[i]["stop_lon"] } }
             markers.push( new google.maps.Marker({ position: request[i]["lat_lng"], map: map, title: theStops[i]["stop_name"] });
           }
 
