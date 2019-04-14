@@ -184,7 +184,7 @@
         for(i=0;  i<theStops.length; i++){
           if(busId==theStops[i]){
             for(j=0; j<aidList.length; j++){
-              if(calculator(theStops{lat_long{lat3}},aidList[j][2], theStops{lat_long{lon3}}, aidList[j][3]) * 0.6 < 1)){
+              if(((calculator(theStops{lat_long{lat3}},aidList[j][2], theStops{lat_long{lon3}}, aidList[j][3])) * 0.6) < 1){
                 createMarker(aidList[j][0]);
               }
             }
