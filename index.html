@@ -173,12 +173,16 @@
           infowindow.open(map, this);
         });
       }
+      function othername() {
+        var input = document.getElementById("userInput").value;
+        alert(input);
+      }
     </script>
   </head>
   <body>
     <div class="topnav">
       <form action="/action_page.php">
-        <input type="text" placeholder="Search.." name="search">
+        <input type="text" placeholder="Put in bus ID" name="search">
         <button type="submit">Submit</button>
       </form>
     </div>
