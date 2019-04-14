@@ -44,7 +44,7 @@
       var infowindow;
 
       function initMap() {
-        var baltimore = new google.maps.LatLng(39.2904, 76.6122);
+        var baltimore = new google.maps.LatLng(39.2904, -76.6122);
 
         infowindow = new google.maps.InfoWindow();
 
@@ -59,7 +59,8 @@
         var request = [ ];
 
         $.getJSON("bus_stops.json", function(rawData) {
-          var theStops = rawData[1]["data"];
+          // alert(rawData);
+          var theStops = rawData[2]["data"];
           for (var i = 0; i <= theStops.length; i++) {
             request.push({"stop_id": theStops[i]["stop_id"], "stop_loc": theStops[i]["stop_lat"] + "n, " + theStops[i]["stop_lon"] + "w"});
           }
