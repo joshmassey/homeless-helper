@@ -20,7 +20,6 @@
   <link rel="stylesheet" href="/assets/css/style.css?v=258b9f2233dd4ea1cf6e4c20930b6302fe981dad">
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -45,7 +44,7 @@
       var infowindow;
 
       function initMap() {
-        var baltimore = new google.maps.LatLng(39.2904, -76.6122);
+        var baltimore = new google.maps.LatLng(39.2904, 76.6122);
 
         infowindow = new google.maps.InfoWindow();
 
@@ -60,8 +59,7 @@
         var request = [ ];
 
         $.getJSON("bus_stops.json", function(rawData) {
-          // alert(rawData);
-          var theStops = rawData[2]["data"];
+          var theStops = rawData[1]["data"];
           for (var i = 0; i <= theStops.length; i++) {
             request.push({"stop_id": theStops[i]["stop_id"], "stop_loc": theStops[i]["stop_lat"] + "n, " + theStops[i]["stop_lon"] + "w"});
           }
@@ -108,8 +106,9 @@
     <h2 id="welcome-to-github-pages">About</h2>
     <p>Homelessness is a widespread epidemic across the nation as well as throughout the rest of the world. It is especially an issue in
       large, dense cities such as New York and Baltimore. With Live Better, we aim to provide some degree of relief and support to those
-      that are struggling with daily (finish later)
-    </footer>
+      that are struggling to attain basic necessities daily. By texting their area ID to our number, we will send the help-seeker locations
+      of the closest shelters and places where they can receive aid.
+    </p>
   </section>
 
 
